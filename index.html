@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Industry Trend Tracker</title>
+    <title>Enhanced AI Industry Trend Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,6 +15,14 @@
                 <h1 class="dashboard-title">AI Industry Trend Tracker</h1>
                 <div class="header-actions">
                     <span class="last-update">Last updated: <span id="lastUpdateTime">Jul 26, 2025 at 9:15 PM</span></span>
+                    <button class="btn btn--secondary notification-btn" id="notificationBtn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6.3 5.7a.9.9 0 0 0-.7.7c0 6.4-3 8.6-3 8.6h18s-3.1-2.2-3.1-8.6a.9.9 0 0 0-.7-.7c-2.6-.2-5.2-.2-7.8 0s-2.6 0-2.6 0z"></path>
+                            <path d="m13.73 21a2 2 0 0 1-3.46 0"></path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                        Notifications Off
+                    </button>
                     <button class="btn btn--primary refresh-btn" id="refreshBtn">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="23 4 23 10 17 10"></polyline>
@@ -32,6 +41,25 @@
             <section class="trends-section">
                 <div class="section-header">
                     <h2>Top Trending AI Topics</h2>
+                    
+                    <!-- Search and Sort Controls -->
+                    <div class="controls-row">
+                        <div class="search-container">
+                            <input type="text" id="searchInput" placeholder="Search trends, keywords..." class="search-input">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </div>
+                        <select id="sortSelect" class="sort-select">
+                            <option value="engagement_score_desc">Engagement Score ↓</option>
+                            <option value="mentions_desc">Mentions ↓</option>
+                            <option value="velocity_desc">Velocity ↓</option>
+                            <option value="sentiment_score_desc">Sentiment ↓</option>
+                            <option value="last_updated_desc">Most Recent</option>
+                        </select>
+                    </div>
+                    
                     <div class="category-filters">
                         <button class="filter-btn active" data-category="all">All Topics (20)</button>
                         <button class="filter-btn" data-category="Technical Development">Technical Development (3)</button>
@@ -45,80 +73,87 @@
                 </div>
             </section>
 
-            <!-- Right Section: Engagement Metrics -->
-            <section class="metrics-section">
-                <div class="section-header">
-                    <h2>Engagement Overview</h2>
-                </div>
-                <div class="metrics-cards">
-                    <div class="metric-card">
-                        <div class="metric-value">14,960</div>
-                        <div class="metric-label">Total Mentions</div>
-                        <div class="metric-change positive">+23% vs last week</div>
+            <!-- Right Section: Enhanced Analytics -->
+            <section class="analytics-section">
+                <!-- Engagement Metrics -->
+                <div class="metrics-section">
+                    <div class="section-header">
+                        <h2>Real-Time Analytics</h2>
                     </div>
-                    <div class="metric-card">
-                        <div class="metric-value">73%</div>
-                        <div class="metric-label">Avg Sentiment</div>
-                        <div class="metric-change positive">+5% vs last week</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">9</div>
-                        <div class="metric-label">High Engagement Topics</div>
-                        <div class="metric-change positive">+2 vs last week</div>
-                    </div>
-                </div>
-
-                <!-- Engagement Distribution Chart -->
-                <div class="engagement-chart">
-                    <h3>Engagement Distribution</h3>
-                    <div class="chart-container">
-                        <div class="engagement-bars">
-                            <div class="engagement-bar high">
-                                <div class="bar-fill" style="height: 85%"></div>
-                                <span class="bar-label">High (9)</span>
-                            </div>
-                            <div class="engagement-bar medium">
-                                <div class="bar-fill" style="height: 65%"></div>
-                                <span class="bar-label">Medium (10)</span>
-                            </div>
-                            <div class="engagement-bar low">
-                                <div class="bar-fill" style="height: 15%"></div>
-                                <span class="bar-label">Low (1)</span>
-                            </div>
+                    <div class="metrics-cards">
+                        <div class="metric-card">
+                            <div class="metric-value">14,960</div>
+                            <div class="metric-label">Total Mentions</div>
+                            <div class="metric-change positive">+23% vs last week</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">73%</div>
+                            <div class="metric-label">Avg Sentiment</div>
+                            <div class="metric-change positive">+5% vs last week</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">9</div>
+                            <div class="metric-label">High Engagement Topics</div>
+                            <div class="metric-change positive">+2 vs last week</div>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Bottom Left: Content Opportunities -->
-            <section class="opportunities-section">
-                <div class="section-header">
-                    <h2>Content Opportunities</h2>
+                <!-- Prediction Chart -->
+                <div class="chart-section">
+                    <div id="predictionChart" class="prediction-chart">
+                        <!-- Prediction chart will be populated -->
+                    </div>
                 </div>
-                <div class="opportunities-grid" id="opportunitiesGrid">
-                    <!-- Content opportunities will be dynamically populated -->
-                </div>
-            </section>
 
-            <!-- Bottom Right: Source Credibility & Export -->
-            <section class="sources-section">
-                <div class="section-header">
-                    <h2>Source Credibility</h2>
+                <!-- Sentiment Chart -->
+                <div class="chart-section">
+                    <div id="sentimentChart" class="sentiment-chart">
+                        <!-- Sentiment chart will be populated -->
+                    </div>
                 </div>
-                <div class="sources-list" id="sourcesList">
-                    <!-- Sources will be dynamically populated -->
+
+                <!-- Watchlist -->
+                <div class="watchlist-section">
+                    <div class="section-header">
+                        <h3>Your Watchlist</h3>
+                        <button class="btn btn--sm btn--outline" id="clearWatchlistBtn">Clear All</button>
+                    </div>
+                    <div id="watchlistContainer" class="watchlist-container">
+                        <!-- Watchlist items will be populated -->
+                    </div>
                 </div>
-                
-                <div class="export-section">
-                    <h3>Export Options</h3>
-                    <button class="btn btn--secondary export-btn" id="exportBtn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        Export Trend Report
-                    </button>
+
+                <!-- Content Opportunities -->
+                <div class="opportunities-section">
+                    <div class="section-header">
+                        <h3>Content Opportunities</h3>
+                    </div>
+                    <div class="opportunities-grid" id="opportunitiesGrid">
+                        <!-- Content opportunities will be dynamically populated -->
+                    </div>
+                </div>
+
+                <!-- Source Credibility & Export -->
+                <div class="sources-section">
+                    <div class="section-header">
+                        <h3>Source Credibility</h3>
+                    </div>
+                    <div class="sources-list" id="sourcesList">
+                        <!-- Sources will be dynamically populated -->
+                    </div>
+                    
+                    <div class="export-section">
+                        <h4>Export Options</h4>
+                        <button class="btn btn--secondary export-btn" id="exportBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Export Enhanced Report
+                        </button>
+                    </div>
                 </div>
             </section>
         </main>
